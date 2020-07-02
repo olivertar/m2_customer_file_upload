@@ -1,0 +1,13 @@
+<?php $helper = $this->helper('Orangecat\RegisterUploadFile\Helper\Data'); ?>
+<?php if ($helper->getAllowFileUpload()): ?>
+    <div class="field customer_file <?php if ($helper->isRequired()):?>required<?php endif;?>">
+        <label for="customer_file" class="label"><span><?php /* @escapeNotVerified */
+                echo __('File Upload') ?></span></label>
+        <div class="control">
+            <input type="file" name="customer_file" id="customer_file"
+                   class="<?php if ($helper->isRequired()): echo 'required-entry'; endif; ?>"
+                   title="<?php /* @escapeNotVerified */
+                   echo __('File Upload') ?>" class="input-text ">
+        </div>
+    </div>
+<?php endif; ?>
