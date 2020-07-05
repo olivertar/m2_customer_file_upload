@@ -1,0 +1,25 @@
+<?php $helper = $this->helper('Orangecat\RegisterUploadFile\Helper\Data'); ?>
+<?php $customer_file = (!empty($block->getCustomer()->getCustomAttribute('customer_file')) && !empty($block->getCustomer()->getCustomAttribute('customer_file')->getValue()) ? $block->getCustomer()->getCustomAttribute('customer_file')->getValue() : '');  ?>
+<?php $customer_file_name = pathinfo($helper->getMediaUrl() . $customer_file);?>
+<?php if ($helper->getAllowFileUpload()): ?>
+    <fieldset class="fieldset uploadfile">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Upload')) ?></span></legend><br>
+        <?php if ($helper->getAllowFileUpload() && !empty($customer_file)): ?>
+            <div class="field customer_file_view">
+                <label for="customer_file" class="label"><span><?php /* @escapeNotVerified */ echo __('Current File') ?>: </span></label>
+                <a href="<?php echo $this->getUrl('customerfile/view/file', ["file" => $helper->getEncodeUrl($customer_file)]);?>" target="_blank"><?php echo $customer_file_name['basename']?></a>
+            </div>
+        <?php endif;?>
+        <?php if ($helper->getAllowFileUpload() && $helper->getAllowFileUploadAccount()): ?>
+            <div class="field customer_file <?php if ($helper->isRequired() && empty($customer_file)):?>required<?php endif;?>">
+                <label for="customer_file" class="label"><span><?php /* @escapeNotVerified */ echo __('File Upload') ?></span></label>
+                <div class="control">
+                    <input type="file" name="customer_file" id="customer_file"
+                           class="<?php if ($helper->isRequired() && empty($customer_file)): echo $block->escapeHtmlAttr('required-entry'); endif; ?>"
+                           title="<?php /* @escapeNotVerified */
+                           echo __('File') ?>" class="input-text ">
+                </div>
+            </div>
+        <?php endif;?>
+    </fieldset>
+<?php endif;?>
