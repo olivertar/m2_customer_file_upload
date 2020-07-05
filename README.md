@@ -12,8 +12,8 @@ The extension can be installed via `composer`. To proceed, run these commands in
 
 ```
 cd /to/root/magento/install
-composer require orangecat/templatesymlinks
-php bin/magento module:enable Orangecat_TemplateSymlinks
+composer require orangecat/registeruploadfile
+php bin/magento module:enable Orangecat_RegisterUploadFile
 php bin/magento setup:upgrade
 ```
 If you need to use it in production mode, these commands will also be necessary:
